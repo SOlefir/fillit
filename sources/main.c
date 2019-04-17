@@ -6,7 +6,7 @@
 /*   By: solefir <solefir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:53:01 by solefir           #+#    #+#             */
-/*   Updated: 2019/04/18 00:40:09 by solefir          ###   ########.fr       */
+/*   Updated: 2019/04/18 00:52:55 by solefir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void static		error(char **input)
 {
 	free(input);
-	ft_putstr("error\n");
+	ft_putstr("error\n");//вообще можно принимать флаги и описывать ошибку. но вроде как надо просто эрор по заданию
 }
 
 int static		read_file(int filledesc, char *input) // чтение из буфера в структуру и валидация файла.
@@ -46,8 +46,8 @@ int				main(int argc, char **argv)
 	int				i;
 
 	i = 0;
-	input = (char*)malloc(sizeof(char) * 546);
-	len = read_file(open(argv[1], O_RDONLY), input);
+	input = (char*)malloc(sizeof(char) * 546); // 546 - макс валидное кол-во символов. 
+	len = read_file(open(argv[1], O_RDONLY), input);//мб стоит потом обрезать строку если она будет меньше len (ft_strcut?)
 	if (argc != 2 || len <= 0)
 		error(&input);
     if (!(tetris = (t_tetraminosec*)ft_memalloc(sizeof(t_tetraminosec))))
