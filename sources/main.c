@@ -6,7 +6,7 @@
 /*   By: solefir <solefir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:53:01 by solefir           #+#    #+#             */
-/*   Updated: 2019/04/18 00:52:55 by solefir          ###   ########.fr       */
+/*   Updated: 2019/04/18 01:33:37 by solefir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int static		read_file(int filledesc, char *input) // чтение из буфе�
 int				main(int argc, char **argv)
 {
     t_tetraminosec *tetris;
-    t_tetraminosec *head;
     char           *input;
     int             len;
 	int				i;
@@ -50,10 +49,8 @@ int				main(int argc, char **argv)
 	len = read_file(open(argv[1], O_RDONLY), input);//мб стоит потом обрезать строку если она будет меньше len (ft_strcut?)
 	if (argc != 2 || len <= 0)
 		error(&input);
-    if (!(tetris = (t_tetraminosec*)ft_memalloc(sizeof(t_tetraminosec))))
-		error(&input);
-    head = tetris;
 	if ((i = valid_tetraminos(input, len)) < 0)
 		error(&input);
+	tetris = write_in_lists(input);
 	return (0);
 }
