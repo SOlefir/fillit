@@ -12,13 +12,14 @@
 
 #include "fillit.h"
 
-void static		error(char **input)
+static void 		error(char *input, char *c)
 {
 	free(input);
-	ft_putstr("error\n");//вообще можно принимать флаги и описывать ошибку. но вроде как надо просто эрор по заданию
+	ft_putstr(c);
+	ft_putstr("error\n"); //вообще можно принимать флаги и описывать ошибку. но вроде как надо просто эрор по заданию
 }
 
-int static		read_file(int filledesc, char *input) // чтение из буфера в структуру и валидация файла.
+static int 		read_file(int filledesc, char *input) // чтение из буфера в структуру и валидация файла.
 {
 	int		len;
     int		count;
@@ -30,7 +31,7 @@ int static		read_file(int filledesc, char *input) // чтение из буфе�
 		return (-1);
 	}
 	close(filledesc);
-	if ((count = (len - 19) % 21) != 0) //валид на кол-во символов
+	if ((count = (len - 20) % 21) != 0) //валид на кол-во символов
 		return (-1);
 	input[len] = '\0';
 	return(len);
@@ -39,7 +40,7 @@ int static		read_file(int filledesc, char *input) // чтение из буфе�
 
 int				main(int argc, char **argv)
 {
-    t_tetraminosec *tetris;
+    // t_tetraminosec *tetris;
     char           *input;
     int             len;
 	int				i;
@@ -48,9 +49,9 @@ int				main(int argc, char **argv)
 	input = (char*)malloc(sizeof(char) * 546); // 546 - макс валидное кол-во символов. 
 	len = read_file(open(argv[1], O_RDONLY), input);//мб стоит потом обрезать строку если она будет меньше len (ft_strcut?)
 	if (argc != 2 || len <= 0)
-		error(&input);
+		error(input, "file\n");
 	if ((i = valid_tetraminos(input, len)) < 0)
-		error(&input);
-	tetris = write_in_lists(input);
+		error(input, "figure\n");
+	// tetris = write_in_lists(input);
 	return (0);
 }
