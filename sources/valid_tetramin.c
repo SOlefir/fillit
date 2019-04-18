@@ -40,7 +40,7 @@ static int	valid_form(char *input)
 	return (1);
 }
 
-static int	count_char(char *input, int len, char c)
+static int	count_char(char *input, int len, int each, char c)
 {
 	int i;
 	int count;
@@ -49,7 +49,7 @@ static int	count_char(char *input, int len, char c)
 	count = 0;
 	while (i <= len)
 	{
-		if (input[i] == c)
+		if (input[i] == c && (i % each) == 0)
 			count++;
 		i++;
 	}
@@ -62,9 +62,9 @@ int		valid_tetraminos(char *input, int len)
 	int	n;
 	int dot;
 
-	hash = count_char(input, len, '#') % 4; 
-	n = (count_char(input, len, '\n') + 1) % 5;
-	dot = count_char(input, len, '.') % 3;
+	hash = count_char(input, len, 0, '#') % 4; 
+	n = (count_char(input, len, 5, '\n') + 1) % 5;
+	dot = count_char(input, len, 0, '.') % 3;
 	if ((dot + hash + n) != 0) //опред. валидное кол-во символов
 		return (-1);
 	if (valid_form(input) < 0) // правильная ли форма фигуры
