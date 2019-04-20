@@ -6,7 +6,7 @@
 /*   By: solefir <solefir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 22:59:25 by solefir           #+#    #+#             */
-/*   Updated: 2019/04/20 16:01:31 by solefir          ###   ########.fr       */
+/*   Updated: 2019/04/20 18:28:43 by solefir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,8 @@ static void	add_figure(char *buf, t_tetris *figures)
 		}
 		else if (buf[i] == '#')
 		{
-			printf("[i = %d]\n", i);
 			figures->x[j - 1] = (i % 5) - first_x;
-			printf("[x = %d]\n", figures->x[j - 1]);
 			figures->y[j - 1] = (i / 5) - first_y;
-			printf("[y = %d]\n", figures->y[j - 1]);
 			j++;
 		}
 		i++;
@@ -44,8 +41,8 @@ static void	add_figure(char *buf, t_tetris *figures)
 
 void		parse(char *buf, t_tetris *figures)
 {
-	int i;
-	char l;
+	int		i;
+	char	l;
 
 	i = 0;
 	l = 'A';
