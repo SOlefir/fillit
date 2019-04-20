@@ -6,7 +6,7 @@
 /*   By: solefir <solefir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 19:49:28 by solefir           #+#    #+#             */
-/*   Updated: 2019/04/20 18:01:41 by solefir          ###   ########.fr       */
+/*   Updated: 2019/04/20 18:51:53 by solefir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-# include <stdio.h> //del
-
-typedef struct	s_tetris	t_tetris;
-typedef struct	s_map		t_map;
+typedef struct s_tetris		t_tetris;
+typedef struct s_map		t_map;
 
 struct	s_map
 {
@@ -33,7 +31,7 @@ struct	s_tetris
 {
 	int			x[3];
 	int			y[3];
-	char 		letter;
+	char		letter;
 	t_tetris	*next;
 };
 
