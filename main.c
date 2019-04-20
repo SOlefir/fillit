@@ -6,7 +6,7 @@
 /*   By: solefir <solefir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 20:13:47 by solefir           #+#    #+#             */
-/*   Updated: 2019/04/19 22:58:17 by solefir          ###   ########.fr       */
+/*   Updated: 2019/04/20 15:21:11 by solefir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		main(int ac, char **av)
 		write(1, "usage: fillit input_file\n", 25);
 		return (0);
 	}
-	figures->next = NULL;
+	figures.next = NULL;
 	reading(open(av[1], O_RDONLY), &figures);
 	//solve(&figures);
 	return (0);

@@ -6,13 +6,13 @@
 /*   By: solefir <solefir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 20:40:17 by solefir           #+#    #+#             */
-/*   Updated: 2019/04/19 22:55:08 by solefir          ###   ########.fr       */
+/*   Updated: 2019/04/20 15:49:27 by solefir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static inline void	check_figure(char *buf, int i, int *figure)
+static inline void	check_figure(char *buf, int i, int *figure) // форма фигуры. считаем совпадения
 {
 	if (buf[i] == '#')
 	{
@@ -23,7 +23,7 @@ static inline void	check_figure(char *buf, int i, int *figure)
 	}
 }
 
-static inline void	count_char(char c, int *dot, int *nl, int *hash)
+static inline void	count_char(char c, int *dot, int *nl, int *hash) //ин лайн, чтобы это был не вызов функции, а конструкция
 {
 	if (c == '.')
 		(*dot)++;
@@ -33,7 +33,7 @@ static inline void	count_char(char c, int *dot, int *nl, int *hash)
 		(*nl)++;
 }
 
-static _Bool		validation_figure(char *buf, int i)
+static _Bool 			validation_figure(char *buf, int i)
 {
 	int	dot;
 	int	nl;
@@ -50,8 +50,8 @@ static _Bool		validation_figure(char *buf, int i)
 		check_figure(buf, i, &figure);
 		i++;
 	}
-	if ((figure != 3 && figure != 4) || buf[4] != '\n' || buf[9] != '\n' ||
-	buf[14] != '\n' || buf[19] != '\n' || dot != 12 || hash != 4 || nl != 4)
+	if ((figure != 3 && figure != 4) || buf[4] != '\n' || buf[9] != '\n' || // количество символов и
+	buf[14] != '\n' || buf[19] != '\n' || dot != 12 || hash != 4 || nl != 4) //костыльчик на проверку порядка \n
 		return (1);
 	return (0);
 }
@@ -63,7 +63,7 @@ void				validation(char *buf)
 	i = 0;
 	while (buf[i] != '\0')
 	{
-		if (validation_figure(buf + i, 0))
+		if (validation_figure(buf + i, 0)) //каждые 20 символов, пропуская переносы строки между фигурами
 		{
 			free(buf);
 			error();
